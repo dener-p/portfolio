@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meu Portfólio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+    header {
+      padding: 40px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #1e293b, #020617);
+    }
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+    header p {
+      color: #94a3b8;
+      margin-top: 10px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .section {
+      margin-bottom: 50px;
+    }
+    .section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #334155;
+      padding-bottom: 10px;
+    }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      background: #334155;
+    }
+    .card h3 {
+      margin-bottom: 10px;
+    }
+    .card p {
+      font-size: 0.9rem;
+      color: #cbd5f5;
+    }
+    .card a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #38bdf8;
+      text-decoration: none;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #64748b;
+      border-top: 1px solid #1e293b;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #38bdf8;
+      color: #020617;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Seu Nome</h1>
+    <p>Desenvolvedor Full Stack | Node.js | React | AWS</p>
+    <a href="#contato" class="btn">Entrar em contato</a>
+  </header>
+
+  <div class="container">
+    <section class="section">
+      <h2>Sobre mim</h2>
+      <p>
+        Desenvolvedor com experiência em construção de APIs, aplicações web modernas e arquitetura escalável.
+        Trabalho com Node.js, React, TypeScript e cloud (AWS).
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Projetos</h2>
+      <div class="projects">
+        <div class="card">
+          <h3>Projeto 1</h3>
+          <p>API REST com autenticação JWT e arquitetura escalável.</p>
+          <a href="#">Ver projeto</a>
+        </div>
+        <div class="card">
+          <h3>Projeto 2</h3>
+          <p>Aplicação React com dashboard e gráficos.</p>
+          <a href="#">Ver projeto</a>
+        </div>
+        <div class="card">
+          <h3>Projeto 3</h3>
+          <p>Deploy serverless usando AWS Lambda.</p>
+          <a href="#">Ver projeto</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contato">
+      <h2>Contato</h2>
+      <p>Email: seuemail@email.com</p>
+      <p>GitHub: github.com/seuuser</p>
+      <p>LinkedIn: linkedin.com/in/seuuser</p>
+    </section>
+  </div>
+
+  <footer>
+    <p>© 2026 - Seu Nome</p>
+  </footer>
+</body>
+</html>
