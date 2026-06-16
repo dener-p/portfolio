@@ -3,136 +3,639 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Meu Portfólio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <title>Dener Puhl — Portfólio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" type="image/png" href="favicon.png">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
       background: #0f172a;
       color: #e2e8f0;
       line-height: 1.6;
     }
+    ::selection { background: #38bdf8; color: #020617; }
+
+    /* Header / Hero */
     header {
-      padding: 40px 20px;
+      padding: 60px 20px 40px;
       text-align: center;
-      background: linear-gradient(135deg, #1e293b, #020617);
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      position: relative;
+      overflow: hidden;
     }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 50% 50%, rgba(56,189,248,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .profile-pic {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 4px solid #38bdf8;
+      object-fit: cover;
+      margin-bottom: 20px;
+      background: #1e293b;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: #64748b;
+      position: relative;
+      overflow: hidden;
+    }
+    .profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .profile-pic .placeholder-icon {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: #475569;
+      background: #1e293b;
+    }
+    .profile-pic img[src]:not([src=""]) + .placeholder-icon,
+    .profile-pic img:not([src=""]) + .placeholder-icon {
+      display: none;
+    }
+
     header h1 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #f8fafc, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header .tagline {
+      color: #94a3b8;
+      margin-top: 8px;
+      font-size: 1.1rem;
+      font-weight: 300;
+    }
+    header .social-links {
+      margin-top: 18px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+    header .social-links a {
+      color: #94a3b8;
+      font-size: 1.3rem;
+      transition: 0.3s;
+    }
+    header .social-links a:hover { color: #38bdf8; transform: translateY(-2px); }
+    header .actions {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: 0.3s;
+    }
+    .btn-primary {
+      background: #38bdf8;
+      color: #020617;
+    }
+    .btn-primary:hover {
+      background: #7dd3fc;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(56,189,248,0.3);
+    }
+    .btn-outline {
+      background: transparent;
+      color: #e2e8f0;
+      border: 2px solid #334155;
+    }
+    .btn-outline:hover {
+      border-color: #38bdf8;
+      color: #38bdf8;
+      transform: translateY(-2px);
+    }
+
+    /* Container */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Sections */
+    .section {
+      padding: 60px 0;
+      border-bottom: 1px solid #1e293b;
+    }
+    .section:last-child { border-bottom: none; }
+    .section h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section h2 i {
+      color: #38bdf8;
+      font-size: 1.3rem;
+    }
+
+    /* About */
+    .about-text {
+      font-size: 1.05rem;
+      color: #cbd5e1;
+      max-width: 800px;
+    }
+    .about-highlights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .highlight-card {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid #334155;
+      transition: 0.3s;
+    }
+    .highlight-card:hover {
+      border-color: #38bdf8;
+      transform: translateY(-3px);
+    }
+    .highlight-card .number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #38bdf8;
+    }
+    .highlight-card .label {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .skill-group {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #334155;
+    }
+    .skill-group h3 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #38bdf8;
+      margin-bottom: 12px;
+    }
+    .skill-group ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .skill-group ul li {
+      background: #334155;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+
+    /* Experience */
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: #334155;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 32px;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #38bdf8;
+      border: 2px solid #0f172a;
+    }
+    .timeline-item .period {
+      font-size: 0.85rem;
+      color: #64748b;
+      font-weight: 500;
+    }
+    .timeline-item h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 4px 0 2px;
+    }
+    .timeline-item .company {
+      color: #38bdf8;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    .timeline-item ul {
+      margin-top: 10px;
+      list-style: none;
+    }
+    .timeline-item ul li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 6px;
+      color: #cbd5e1;
+      font-size: 0.92rem;
+    }
+    .timeline-item ul li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: #38bdf8;
       font-weight: 700;
     }
-    header p {
-      color: #94a3b8;
-      margin-top: 10px;
-    }
-    .container {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    .section {
-      margin-bottom: 50px;
-    }
-    .section h2 {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #334155;
-      padding-bottom: 10px;
-    }
-    .projects {
+
+    /* Projects */
+    .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
     }
     .card {
       background: #1e293b;
-      padding: 20px;
+      padding: 24px;
       border-radius: 12px;
+      border: 1px solid #334155;
       transition: 0.3s;
     }
     .card:hover {
       transform: translateY(-5px);
-      background: #334155;
+      border-color: #38bdf8;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.3);
     }
     .card h3 {
-      margin-bottom: 10px;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
+    .card h3 i { color: #38bdf8; font-size: 1rem; }
     .card p {
       font-size: 0.9rem;
-      color: #cbd5f5;
+      color: #94a3b8;
+      line-height: 1.5;
     }
-    .card a {
+    .card .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+    .card .tags span {
+      background: #334155;
+      padding: 2px 10px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+
+    /* Education */
+    .edu-item {
+      background: #1e293b;
+      padding: 20px 24px;
+      border-radius: 12px;
+      border: 1px solid #334155;
+      margin-bottom: 12px;
+    }
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-item h3 { font-size: 1.05rem; font-weight: 600; }
+    .edu-item .institution { color: #94a3b8; font-size: 0.9rem; }
+    .edu-item .status {
       display: inline-block;
-      margin-top: 10px;
-      color: #38bdf8;
-      text-decoration: none;
+      margin-top: 6px;
+      padding: 2px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
     }
+    .status-in-progress { background: #1e3a5f; color: #7dd3fc; }
+    .status-completed { background: #1a3a2a; color: #6ee7b7; }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .contact-item {
+      background: #1e293b;
+      padding: 18px 20px;
+      border-radius: 10px;
+      border: 1px solid #334155;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .contact-item:hover {
+      border-color: #38bdf8;
+      transform: translateY(-2px);
+    }
+    .contact-item i {
+      font-size: 1.4rem;
+      color: #38bdf8;
+      width: 24px;
+      text-align: center;
+    }
+    .contact-item .info { display: flex; flex-direction: column; }
+    .contact-item .info .label { font-size: 0.75rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+    .contact-item .info .value { font-size: 0.95rem; color: #e2e8f0; word-break: break-all; }
+
+    /* Footer */
     footer {
       text-align: center;
-      padding: 20px;
-      color: #64748b;
+      padding: 32px 20px;
+      color: #475569;
+      font-size: 0.85rem;
       border-top: 1px solid #1e293b;
     }
-    .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
-      background: #38bdf8;
-      color: #020617;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      header h1 { font-size: 2rem; }
+      header .actions { flex-direction: column; align-items: center; }
+      .section { padding: 40px 0; }
     }
   </style>
 </head>
 <body>
+
+  <!-- HERO -->
   <header>
-    <h1>Seu Nome</h1>
-    <p>Desenvolvedor Full Stack | Node.js | React | AWS</p>
-    <a href="#contato" class="btn">Entrar em contato</a>
+    <div class="profile-pic">
+      <img src="public/profile.jpeg" alt="Foto de Dener Puhl" />
+      <span class="placeholder-icon"><i class="fas fa-user"></i></span>
+    </div>
+    <h1>Dener Puhl</h1>
+    <p class="tagline">Desenvolvedor Full Stack &bull; Node.js &bull; AWS Serverless</p>
+    <div class="social-links">
+      <a href="https://github.com/dener-p" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/dener-puhl-dev" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://dener.puhl.dev" target="_blank" aria-label="Site"><i class="fas fa-globe"></i></a>
+      <a href="mailto:denerpuhl@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+    </div>
+    <div class="actions">
+      <a href="#contato" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Entrar em contato</a>
+      <a href="public/dener_puhl_cv.pdf" target="_blank" class="btn btn-outline"><i class="fas fa-download"></i> Baixar CV</a>
+    </div>
   </header>
 
   <div class="container">
-    <section class="section">
-      <h2>Sobre mim</h2>
-      <p>
-        Desenvolvedor com experiência em construção de APIs, aplicações web modernas e arquitetura escalável.
-        Trabalho com Node.js, React, TypeScript e cloud (AWS).
-      </p>
-    </section>
 
+    <!-- SOBRE -->
     <section class="section">
-      <h2>Projetos</h2>
-      <div class="projects">
-        <div class="card">
-          <h3>Projeto 1</h3>
-          <p>API REST com autenticação JWT e arquitetura escalável.</p>
-          <a href="#">Ver projeto</a>
+      <h2><i class="fas fa-user"></i> Sobre mim</h2>
+      <p class="about-text">
+        Desenvolvedor Full Stack com mais de 4 anos de experiência no setor financeiro, 
+        especialista em <strong>Node.js</strong> e <strong>AWS Serverless</strong>. Atuo na construção de APIs 
+        seguras, performáticas e orientadas a eventos. Tenho sólida experiência na modernização 
+        de sistemas legados — incluindo reescrita completa e migração de dados — alcançando 
+        ganhos de performance superiores a <strong>200%</strong> e redução de custos em até <strong>60%</strong>.
+      </p>
+      <div class="about-highlights">
+        <div class="highlight-card">
+          <div class="number">4+</div>
+          <div class="label">Anos de experiência</div>
         </div>
-        <div class="card">
-          <h3>Projeto 2</h3>
-          <p>Aplicação React com dashboard e gráficos.</p>
-          <a href="#">Ver projeto</a>
+        <div class="highlight-card">
+          <div class="number">200%</div>
+          <div class="label">Ganho de performance</div>
         </div>
-        <div class="card">
-          <h3>Projeto 3</h3>
-          <p>Deploy serverless usando AWS Lambda.</p>
-          <a href="#">Ver projeto</a>
+        <div class="highlight-card">
+          <div class="number">60%</div>
+          <div class="label">Redução de custos</div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="contato">
-      <h2>Contato</h2>
-      <p>Email: seuemail@email.com</p>
-      <p>GitHub: github.com/seuuser</p>
-      <p>LinkedIn: linkedin.com/in/seuuser</p>
+    <!-- COMPETÊNCIAS -->
+    <section class="section">
+      <h2><i class="fas fa-code"></i> Competências Técnicas</h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>Backend</h3>
+          <ul>
+            <li>Node.js (Express, NestJS, Hono)</li>
+            <li>Python (Django, Flask)</li>
+            <li>Go</li>
+            <li>Java (Spring, Quarkus)</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Frontend</h3>
+          <ul>
+            <li>React</li>
+            <li>Next.js</li>
+            <li>TypeScript</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Cloud &amp; DevOps</h3>
+          <ul>
+            <li>AWS (Lambda, S3)</li>
+            <li>Docker</li>
+            <li>Kubernetes</li>
+            <li>CI/CD</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Arquitetura</h3>
+          <ul>
+            <li>APIs REST</li>
+            <li>Arquitetura Orientada a Eventos</li>
+            <li>Microsserviços</li>
+            <li>RabbitMQ, Redis</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Banco de Dados</h3>
+          <ul>
+            <li>PostgreSQL</li>
+            <li>MySQL</li>
+            <li>SQLite</li>
+            <li>MongoDB</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Observabilidade &amp; Outros</h3>
+          <ul>
+            <li>Prometheus, Grafana</li>
+            <li>Git</li>
+            <li>JWT, OAuth2</li>
+            <li>OWASP</li>
+          </ul>
+        </div>
+      </div>
     </section>
+
+    <!-- EXPERIÊNCIA -->
+    <section class="section">
+      <h2><i class="fas fa-briefcase"></i> Experiência Profissional</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="period">Jan/2023 – Jan/2026</span>
+          <h3>Desenvolvedor Full Stack</h3>
+          <p class="company">CXE Serviços de Assessoria e Tecnologia LTDA</p>
+          <ul>
+            <li>Arquitetura e desenvolvimento de sistemas financeiros de alta criticidade com foco em escalabilidade e alta disponibilidade.</li>
+            <li>Liderei a modernização de sistemas legados — reescrita completa e migração de dados — resultando em ganhos de performance de até 200%.</li>
+            <li>Implementei melhorias estruturais que aumentaram a performance de sistemas críticos em aproximadamente 80%.</li>
+            <li>Otimização de infraestrutura em cloud (AWS), reduzindo custos operacionais em cerca de 60%.</li>
+            <li>Introduzi boas práticas de desenvolvimento (CI/CD, padronização de código), aumentando a produtividade da equipe.</li>
+            <li>Trabalhei com arquitetura orientada a eventos utilizando RabbitMQ e Redis para comunicação entre serviços.</li>
+          </ul>
+        </div>
+        <div class="timeline-item">
+          <span class="period">Jul/2021 – Dez/2022</span>
+          <h3>Desenvolvedor Front-End (Estágio)</h3>
+          <p class="company">CXE Serviços de Assessoria e Tecnologia LTDA</p>
+          <ul>
+            <li>Desenvolvimento de interfaces web com foco em performance e experiência do usuário.</li>
+            <li>Evoluí para responsabilidades full-stack, incluindo APIs RESTful e integração entre serviços via webhooks.</li>
+            <li>Desenvolvi aplicações front-end completas utilizando React e TypeScript.</li>
+            <li>Colaborei com times de design e backend para garantir consistência visual e funcionalidade.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJETOS -->
+    <section class="section">
+      <h2><i class="fas fa-rocket"></i> Projetos Relevantes</h2>
+      <div class="projects-grid">
+        <div class="card">
+          <h3><i class="fas fa-chart-line"></i> Sistema de Trading Automatizado</h3>
+          <p>Desenvolvimento de bots de trade com foco em alta disponibilidade e execução em tempo real, utilizando mensageria e cache (RabbitMQ, Redis) com arquitetura resiliente para operações críticas.</p>
+          <div class="tags">
+            <span>Node.js</span>
+            <span>RabbitMQ</span>
+            <span>Redis</span>
+            <span>Alta Disponibilidade</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3><i class="fas fa-sync-alt"></i> Modernização de Sistema Legado</h3>
+          <p>Reescrita completa com arquitetura orientada a eventos, migração de dados e melhoria de performance superior a 200%, com redução significativa de custos em infraestrutura.</p>
+          <div class="tags">
+            <span>AWS</span>
+            <span>Event-Driven</span>
+            <span>Migração</span>
+            <span>Performance</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMAÇÃO -->
+    <section class="section">
+      <h2><i class="fas fa-graduation-cap"></i> Formação Acadêmica</h2>
+      <div class="edu-item">
+        <h3>Análise e Desenvolvimento de Sistemas</h3>
+        <p class="institution">Unimar – Universidade de Marília</p>
+        <span class="status status-in-progress">Em andamento</span>
+      </div>
+      <div class="edu-item">
+        <h3>Técnico em Informática</h3>
+        <p class="institution">Universitário Escola Técnica – Porto Alegre</p>
+        <span class="status status-completed">Concluído</span>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section class="section" id="contato">
+      <h2><i class="fas fa-paper-plane"></i> Contato</h2>
+      <div class="contact-grid">
+        <a href="mailto:denerpuhl@gmail.com" class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <div class="info">
+            <span class="label">Email</span>
+            <span class="value">denerpuhl@gmail.com</span>
+          </div>
+        </a>
+        <a href="https://linkedin.com/in/dener-puhl-dev" target="_blank" class="contact-item">
+          <i class="fab fa-linkedin-in"></i>
+          <div class="info">
+            <span class="label">LinkedIn</span>
+            <span class="value">/in/dener-puhl-dev</span>
+          </div>
+        </a>
+        <a href="https://github.com/dener-p" target="_blank" class="contact-item">
+          <i class="fab fa-github"></i>
+          <div class="info">
+            <span class="label">GitHub</span>
+            <span class="value">/dener-p</span>
+          </div>
+        </a>
+        <a href="https://dener.puhl.dev" target="_blank" class="contact-item">
+          <i class="fas fa-globe"></i>
+          <div class="info">
+            <span class="label">Site</span>
+            <span class="value">dener.puhl.dev</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
   </div>
 
   <footer>
-    <p>© 2026 - Seu Nome</p>
+    <p>&copy; 2026 Dener Puhl — Feito com <i class="fas fa-heart" style="color: #38bdf8;"></i></p>
   </footer>
+
 </body>
 </html>
