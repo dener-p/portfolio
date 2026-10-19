@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dener Puhl — Desenvolvedor Full Stack especializado em Node.js e AWS Serverless." />
   <title>Dener Puhl — Portfólio</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -35,6 +36,39 @@
       height: 200%;
       background: radial-gradient(circle at 50% 50%, rgba(56,189,248,0.08) 0%, transparent 60%);
       pointer-events: none;
+    }
+
+    /* Language switch */
+    .lang-switch {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      z-index: 2;
+      display: inline-flex;
+      padding: 3px;
+      gap: 2px;
+      border: 1px solid #334155;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(6px);
+    }
+    .lang-switch button {
+      border: none;
+      background: transparent;
+      color: #94a3b8;
+      font-family: inherit;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .lang-switch button:hover { color: #e2e8f0; }
+    .lang-switch button.active {
+      background: #38bdf8;
+      color: #020617;
     }
 
     .profile-pic {
@@ -341,6 +375,18 @@
       font-size: 0.75rem;
       color: #94a3b8;
     }
+    .card .visit {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      color: #38bdf8;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .card .visit i { font-size: 0.75rem; transition: 0.2s; }
+    .card .visit:hover i { transform: translate(2px, -2px); }
 
     /* Education */
     .edu-item {
@@ -410,6 +456,7 @@
       header h1 { font-size: 2rem; }
       header .actions { flex-direction: column; align-items: center; }
       .section { padding: 40px 0; }
+      .lang-switch { top: 12px; right: 12px; }
     }
   </style>
 </head>
@@ -417,20 +464,24 @@
 
   <!-- HERO -->
   <header>
+    <div class="lang-switch" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="pt" aria-pressed="false">PT</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
     <div class="profile-pic">
-      <img src="public/profile.jpeg" alt="Foto de Dener Puhl" />
+      <img src="public/profile.jpeg" alt="Foto de Dener Puhl" data-i18n-alt="profile.alt" />
       <span class="placeholder-icon"><i class="fas fa-user"></i></span>
     </div>
     <h1>Dener Puhl</h1>
-    <p class="tagline">Desenvolvedor Full Stack &bull; Node.js &bull; AWS Serverless</p>
+    <p class="tagline" data-i18n="hero.tagline">Desenvolvedor Full Stack &bull; Node.js &bull; AWS Serverless</p>
     <div class="social-links">
-      <a href="https://github.com/dener-p" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-      <a href="https://linkedin.com/in/dener-puhl-dev" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/dener-p" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/dener-puhl-dev" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
       <a href="mailto:denerpuhl@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
     </div>
     <div class="actions">
-      <a href="#contato" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Entrar em contato</a>
-      <a href="public/dener_puhl_cv.pdf" target="_blank" class="btn btn-outline"><i class="fas fa-download"></i> Baixar CV</a>
+      <a href="#contato" class="btn btn-primary"><i class="fas fa-paper-plane"></i> <span data-i18n="hero.contact">Entrar em contato</span></a>
+      <a href="public/Dener_Puhl_Curriculo_PTBR.docx.pdf" target="_blank" rel="noopener" class="btn btn-outline" id="cv-link"><i class="fas fa-download"></i> <span data-i18n="hero.cv">Baixar CV</span></a>
     </div>
   </header>
 
@@ -438,8 +489,8 @@
 
     <!-- SOBRE -->
     <section class="section">
-      <h2><i class="fas fa-user"></i> Sobre mim</h2>
-      <p class="about-text">
+      <h2><i class="fas fa-user"></i> <span data-i18n="about.title">Sobre mim</span></h2>
+      <p class="about-text" data-i18n-html="about.text">
         Desenvolvedor Full Stack com mais de 4 anos de experiência no setor financeiro, 
         especialista em <strong>Node.js</strong> e <strong>AWS Serverless</strong>. Atuo na construção de APIs 
         seguras, performáticas e orientadas a eventos. Tenho sólida experiência na modernização 
@@ -449,25 +500,25 @@
       <div class="about-highlights">
         <div class="highlight-card">
           <div class="number">4+</div>
-          <div class="label">Anos de experiência</div>
+          <div class="label" data-i18n="about.yearsLabel">Anos de experiência</div>
         </div>
         <div class="highlight-card">
           <div class="number">200%</div>
-          <div class="label">Ganho de performance</div>
+          <div class="label" data-i18n="about.perfLabel">Ganho de performance</div>
         </div>
         <div class="highlight-card">
           <div class="number">60%</div>
-          <div class="label">Redução de custos</div>
+          <div class="label" data-i18n="about.costLabel">Redução de custos</div>
         </div>
       </div>
     </section>
 
     <!-- COMPETÊNCIAS -->
     <section class="section">
-      <h2><i class="fas fa-code"></i> Competências Técnicas</h2>
+      <h2><i class="fas fa-code"></i> <span data-i18n="skills.title">Competências Técnicas</span></h2>
       <div class="skills-grid">
         <div class="skill-group">
-          <h3>Backend</h3>
+          <h3 data-i18n="skills.backend">Backend</h3>
           <ul>
             <li>Node.js (Express, NestJS, Hono)</li>
             <li>Python (Django, Flask)</li>
@@ -476,7 +527,7 @@
           </ul>
         </div>
         <div class="skill-group">
-          <h3>Frontend</h3>
+          <h3 data-i18n="skills.frontend">Frontend</h3>
           <ul>
             <li>React</li>
             <li>Next.js</li>
@@ -484,7 +535,7 @@
           </ul>
         </div>
         <div class="skill-group">
-          <h3>Cloud &amp; DevOps</h3>
+          <h3 data-i18n="skills.cloud">Cloud &amp; DevOps</h3>
           <ul>
             <li>AWS (Lambda, S3)</li>
             <li>Docker</li>
@@ -493,16 +544,16 @@
           </ul>
         </div>
         <div class="skill-group">
-          <h3>Arquitetura</h3>
+          <h3 data-i18n="skills.architecture">Arquitetura</h3>
           <ul>
-            <li>APIs REST</li>
-            <li>Arquitetura Orientada a Eventos</li>
-            <li>Microsserviços</li>
+            <li data-i18n="skills.architecture.rest">APIs REST</li>
+            <li data-i18n="skills.architecture.eventDriven">Arquitetura Orientada a Eventos</li>
+            <li data-i18n="skills.architecture.microservices">Microsserviços</li>
             <li>RabbitMQ, Redis</li>
           </ul>
         </div>
         <div class="skill-group">
-          <h3>Banco de Dados</h3>
+          <h3 data-i18n="skills.databases">Banco de Dados</h3>
           <ul>
             <li>PostgreSQL</li>
             <li>MySQL</li>
@@ -511,7 +562,7 @@
           </ul>
         </div>
         <div class="skill-group">
-          <h3>Observabilidade &amp; Outros</h3>
+          <h3 data-i18n="skills.other">Observabilidade &amp; Outros</h3>
           <ul>
             <li>Prometheus, Grafana</li>
             <li>Git</li>
@@ -524,30 +575,30 @@
 
     <!-- EXPERIÊNCIA -->
     <section class="section">
-      <h2><i class="fas fa-briefcase"></i> Experiência Profissional</h2>
+      <h2><i class="fas fa-briefcase"></i> <span data-i18n="experience.title">Experiência Profissional</span></h2>
       <div class="timeline">
         <div class="timeline-item">
-          <span class="period">Jan/2023 – Jan/2026</span>
-          <h3>Desenvolvedor Full Stack</h3>
+          <span class="period" data-i18n="experience.job1.period">Jan/2023 – Jan/2026</span>
+          <h3 data-i18n="experience.job1.role">Desenvolvedor Full Stack</h3>
           <p class="company">CXE Serviços de Assessoria e Tecnologia LTDA</p>
           <ul>
-            <li>Arquitetura e desenvolvimento de sistemas financeiros de alta criticidade com foco em escalabilidade e alta disponibilidade.</li>
-            <li>Liderei a modernização de sistemas legados — reescrita completa e migração de dados — resultando em ganhos de performance de até 200%.</li>
-            <li>Implementei melhorias estruturais que aumentaram a performance de sistemas críticos em aproximadamente 80%.</li>
-            <li>Otimização de infraestrutura em cloud (AWS), reduzindo custos operacionais em cerca de 60%.</li>
-            <li>Introduzi boas práticas de desenvolvimento (CI/CD, padronização de código), aumentando a produtividade da equipe.</li>
-            <li>Trabalhei com arquitetura orientada a eventos utilizando RabbitMQ e Redis para comunicação entre serviços.</li>
+            <li data-i18n="experience.job1.b1">Arquitetura e desenvolvimento de sistemas financeiros de alta criticidade com foco em escalabilidade e alta disponibilidade.</li>
+            <li data-i18n="experience.job1.b2">Liderei a modernização de sistemas legados — reescrita completa e migração de dados — resultando em ganhos de performance de até 200%.</li>
+            <li data-i18n="experience.job1.b3">Implementei melhorias estruturais que aumentaram a performance de sistemas críticos em aproximadamente 80%.</li>
+            <li data-i18n="experience.job1.b4">Otimização de infraestrutura em cloud (AWS), reduzindo custos operacionais em cerca de 60%.</li>
+            <li data-i18n="experience.job1.b5">Introduzi boas práticas de desenvolvimento (CI/CD, padronização de código), aumentando a produtividade da equipe.</li>
+            <li data-i18n="experience.job1.b6">Trabalhei com arquitetura orientada a eventos utilizando RabbitMQ e Redis para comunicação entre serviços.</li>
           </ul>
         </div>
         <div class="timeline-item">
-          <span class="period">Jul/2021 – Dez/2022</span>
-          <h3>Desenvolvedor Front-End (Estágio)</h3>
+          <span class="period" data-i18n="experience.job2.period">Jul/2021 – Dez/2022</span>
+          <h3 data-i18n="experience.job2.role">Desenvolvedor Front-End (Estágio)</h3>
           <p class="company">CXE Serviços de Assessoria e Tecnologia LTDA</p>
           <ul>
-            <li>Desenvolvimento de interfaces web com foco em performance e experiência do usuário.</li>
-            <li>Evoluí para responsabilidades full-stack, incluindo APIs RESTful e integração entre serviços via webhooks.</li>
-            <li>Desenvolvi aplicações front-end completas utilizando React e TypeScript.</li>
-            <li>Colaborei com times de design e backend para garantir consistência visual e funcionalidade.</li>
+            <li data-i18n="experience.job2.b1">Desenvolvimento de interfaces web com foco em performance e experiência do usuário.</li>
+            <li data-i18n="experience.job2.b2">Evoluí para responsabilidades full-stack, incluindo APIs RESTful e integração entre serviços via webhooks.</li>
+            <li data-i18n="experience.job2.b3">Desenvolvi aplicações front-end completas utilizando React e TypeScript.</li>
+            <li data-i18n="experience.job2.b4">Colaborei com times de design e backend para garantir consistência visual e funcionalidade.</li>
           </ul>
         </div>
       </div>
@@ -555,49 +606,73 @@
 
     <!-- PROJETOS -->
     <section class="section">
-      <h2><i class="fas fa-rocket"></i> Projetos Relevantes</h2>
+      <h2><i class="fas fa-rocket"></i> <span data-i18n="projects.title">Projetos Relevantes</span></h2>
       <div class="projects-grid">
         <div class="card">
-          <h3><i class="fas fa-chart-line"></i> Sistema de Trading Automatizado</h3>
-          <p>Desenvolvimento de bots de trade com foco em alta disponibilidade e execução em tempo real, utilizando mensageria e cache (RabbitMQ, Redis) com arquitetura resiliente para operações críticas.</p>
+          <h3><i class="fas fa-chart-line"></i> <span data-i18n="projects.trading.title">Sistema de Trading Automatizado</span></h3>
+          <p data-i18n="projects.trading.desc">Desenvolvimento de bots de trade com foco em alta disponibilidade e execução em tempo real, utilizando mensageria e cache (RabbitMQ, Redis) com arquitetura resiliente para operações críticas.</p>
           <div class="tags">
             <span>Node.js</span>
             <span>RabbitMQ</span>
             <span>Redis</span>
-            <span>Alta Disponibilidade</span>
+            <span data-i18n="projects.trading.tag">Alta Disponibilidade</span>
           </div>
         </div>
         <div class="card">
-          <h3><i class="fas fa-sync-alt"></i> Modernização de Sistema Legado</h3>
-          <p>Reescrita completa com arquitetura orientada a eventos, migração de dados e melhoria de performance superior a 200%, com redução significativa de custos em infraestrutura.</p>
+          <h3><i class="fas fa-sync-alt"></i> <span data-i18n="projects.legacy.title">Modernização de Sistema Legado</span></h3>
+          <p data-i18n="projects.legacy.desc">Reescrita completa com arquitetura orientada a eventos, migração de dados e melhoria de performance superior a 200%, com redução significativa de custos em infraestrutura.</p>
           <div class="tags">
             <span>AWS</span>
-            <span>Event-Driven</span>
-            <span>Migração</span>
-            <span>Performance</span>
+            <span data-i18n="projects.legacy.tag1">Event-Driven</span>
+            <span data-i18n="projects.legacy.tag2">Migração</span>
+            <span data-i18n="projects.legacy.tag3">Performance</span>
           </div>
+        </div>
+        <div class="card">
+          <h3><i class="fas fa-desktop"></i> <span data-i18n="projects.golive.title">Golive</span></h3>
+          <p data-i18n="projects.golive.desc">Compartilhamento de tela P2P com amigos por meio de um link privado. O WebRTC transmite vídeo e áudio diretamente entre os navegadores — nada passa pelo servidor.</p>
+          <div class="tags">
+            <span>WebRTC</span>
+            <span>P2P</span>
+            <span data-i18n="projects.golive.tag">Compartilhamento de Tela</span>
+          </div>
+          <a class="visit" href="https://golive.puhl.dev" target="_blank" rel="noopener">
+            <span data-i18n="projects.visit">Visitar site</span> <i class="fas fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+        <div class="card">
+          <h3><i class="fas fa-share-nodes"></i> <span data-i18n="projects.share.title">Share</span></h3>
+          <p data-i18n="projects.share.desc">Compartilhamento de arquivos ponto a ponto: envie arquivos diretamente entre navegadores, sem upload para um servidor central.</p>
+          <div class="tags">
+            <span>WebRTC</span>
+            <span>P2P</span>
+            <span data-i18n="projects.share.tag">Transferência de Arquivos</span>
+          </div>
+          <a class="visit" href="https://share.puhl.dev" target="_blank" rel="noopener">
+            <span data-i18n="projects.visit">Visitar site</span> <i class="fas fa-arrow-up-right-from-square"></i>
+          </a>
         </div>
       </div>
     </section>
 
     <!-- FORMAÇÃO -->
     <section class="section">
-      <h2><i class="fas fa-graduation-cap"></i> Formação Acadêmica</h2>
+      <h2><i class="fas fa-graduation-cap"></i> <span data-i18n="education.title">Formação Acadêmica</span></h2>
       <div class="edu-item">
-        <h3>Análise e Desenvolvimento de Sistemas</h3>
-        <p class="institution">Unimar – Universidade de Marília</p>
-        <span class="status status-in-progress">Em andamento</span>
+        <h3 data-i18n="education.degree1">Análise e Desenvolvimento de Sistemas</h3>
+        <p class="institution" data-i18n="education.school1">Unimar – Universidade de Marília</p>
+        <span class="status status-in-progress" data-i18n="education.status1">Em andamento</span>
       </div>
       <div class="edu-item">
-        <h3>Técnico em Informática</h3>
-        <p class="institution">Universitário Escola Técnica – Porto Alegre</p>
-        <span class="status status-completed">Concluído</span>
+        <h3 data-i18n="education.degree2">Técnico em Informática</h3>
+        <p class="institution" data-i18n="education.school2">Universitário Escola Técnica – Porto Alegre</p>
+        <span class="status status-completed" data-i18n="education.status2">Concluído</span>
       </div>
     </section>
 
     <!-- CONTATO -->
     <section class="section" id="contato">
-      <h2><i class="fas fa-paper-plane"></i> Contato</h2>
+      <h2><i class="fas fa-paper-plane"></i> <span data-i18n="contact.title">Contato</span></h2>
       <div class="contact-grid">
         <a href="mailto:denerpuhl@gmail.com" class="contact-item">
           <i class="fas fa-envelope"></i>
@@ -606,21 +681,20 @@
             <span class="value">denerpuhl@gmail.com</span>
           </div>
         </a>
-        <a href="https://linkedin.com/in/dener-puhl-dev" target="_blank" class="contact-item">
+        <a href="https://linkedin.com/in/dener-puhl-dev" target="_blank" rel="noopener" class="contact-item">
           <i class="fab fa-linkedin-in"></i>
           <div class="info">
             <span class="label">LinkedIn</span>
             <span class="value">/in/dener-puhl-dev</span>
           </div>
         </a>
-        <a href="https://github.com/dener-p" target="_blank" class="contact-item">
+        <a href="https://github.com/dener-p" target="_blank" rel="noopener" class="contact-item">
           <i class="fab fa-github"></i>
           <div class="info">
             <span class="label">GitHub</span>
             <span class="value">/dener-p</span>
           </div>
         </a>
-      
       </div>
     </section>
 
@@ -629,6 +703,206 @@
   <footer>
     <p>&copy; 2026 Dener Puhl</p>
   </footer>
+
+  <script>
+    const translations = {
+      pt: {
+        'meta.title': 'Dener Puhl — Portfólio',
+        'meta.description': 'Dener Puhl — Desenvolvedor Full Stack especializado em Node.js e AWS Serverless.',
+        'profile.alt': 'Foto de Dener Puhl',
+        'hero.tagline': 'Desenvolvedor Full Stack • Node.js • AWS Serverless',
+        'hero.contact': 'Entrar em contato',
+        'hero.cv': 'Baixar CV',
+        'about.title': 'Sobre mim',
+        'about.text': 'Desenvolvedor Full Stack com mais de 4 anos de experiência no setor financeiro, especialista em <strong>Node.js</strong> e <strong>AWS Serverless</strong>. Atuo na construção de APIs seguras, performáticas e orientadas a eventos. Tenho sólida experiência na modernização de sistemas legados — incluindo reescrita completa e migração de dados — alcançando ganhos de performance superiores a <strong>200%</strong> e redução de custos em até <strong>60%</strong>.',
+        'about.yearsLabel': 'Anos de experiência',
+        'about.perfLabel': 'Ganho de performance',
+        'about.costLabel': 'Redução de custos',
+        'skills.title': 'Competências Técnicas',
+        'skills.backend': 'Backend',
+        'skills.frontend': 'Frontend',
+        'skills.cloud': 'Cloud & DevOps',
+        'skills.architecture': 'Arquitetura',
+        'skills.architecture.rest': 'APIs REST',
+        'skills.architecture.eventDriven': 'Arquitetura Orientada a Eventos',
+        'skills.architecture.microservices': 'Microsserviços',
+        'skills.databases': 'Banco de Dados',
+        'skills.other': 'Observabilidade & Outros',
+        'experience.title': 'Experiência Profissional',
+        'experience.job1.period': 'Jan/2023 – Jan/2026',
+        'experience.job1.role': 'Desenvolvedor Full Stack',
+        'experience.job1.b1': 'Arquitetura e desenvolvimento de sistemas financeiros de alta criticidade com foco em escalabilidade e alta disponibilidade.',
+        'experience.job1.b2': 'Liderei a modernização de sistemas legados — reescrita completa e migração de dados — resultando em ganhos de performance de até 200%.',
+        'experience.job1.b3': 'Implementei melhorias estruturais que aumentaram a performance de sistemas críticos em aproximadamente 80%.',
+        'experience.job1.b4': 'Otimização de infraestrutura em cloud (AWS), reduzindo custos operacionais em cerca de 60%.',
+        'experience.job1.b5': 'Introduzi boas práticas de desenvolvimento (CI/CD, padronização de código), aumentando a produtividade da equipe.',
+        'experience.job1.b6': 'Trabalhei com arquitetura orientada a eventos utilizando RabbitMQ e Redis para comunicação entre serviços.',
+        'experience.job2.period': 'Jul/2021 – Dez/2022',
+        'experience.job2.role': 'Desenvolvedor Front-End (Estágio)',
+        'experience.job2.b1': 'Desenvolvimento de interfaces web com foco em performance e experiência do usuário.',
+        'experience.job2.b2': 'Evoluí para responsabilidades full-stack, incluindo APIs RESTful e integração entre serviços via webhooks.',
+        'experience.job2.b3': 'Desenvolvi aplicações front-end completas utilizando React e TypeScript.',
+        'experience.job2.b4': 'Colaborei com times de design e backend para garantir consistência visual e funcionalidade.',
+        'projects.title': 'Projetos Relevantes',
+        'projects.trading.title': 'Sistema de Trading Automatizado',
+        'projects.trading.desc': 'Desenvolvimento de bots de trade com foco em alta disponibilidade e execução em tempo real, utilizando mensageria e cache (RabbitMQ, Redis) com arquitetura resiliente para operações críticas.',
+        'projects.trading.tag': 'Alta Disponibilidade',
+        'projects.legacy.title': 'Modernização de Sistema Legado',
+        'projects.legacy.desc': 'Reescrita completa com arquitetura orientada a eventos, migração de dados e melhoria de performance superior a 200%, com redução significativa de custos em infraestrutura.',
+        'projects.legacy.tag1': 'Event-Driven',
+        'projects.legacy.tag2': 'Migração',
+        'projects.legacy.tag3': 'Performance',
+        'projects.golive.title': 'Golive',
+        'projects.golive.desc': 'Compartilhamento de tela P2P com amigos por meio de um link privado. O WebRTC transmite vídeo e áudio diretamente entre os navegadores — nada passa pelo servidor.',
+        'projects.golive.tag': 'Compartilhamento de Tela',
+        'projects.share.title': 'Share',
+        'projects.share.desc': 'Compartilhamento de arquivos ponto a ponto: envie arquivos diretamente entre navegadores, sem upload para um servidor central.',
+        'projects.share.tag': 'Transferência de Arquivos',
+        'projects.visit': 'Visitar site',
+        'education.title': 'Formação Acadêmica',
+        'education.degree1': 'Análise e Desenvolvimento de Sistemas',
+        'education.school1': 'Unimar – Universidade de Marília',
+        'education.status1': 'Em andamento',
+        'education.degree2': 'Técnico em Informática',
+        'education.school2': 'Universitário Escola Técnica – Porto Alegre',
+        'education.status2': 'Concluído',
+        'contact.title': 'Contato'
+      },
+      en: {
+        'meta.title': 'Dener Puhl — Portfolio',
+        'meta.description': 'Dener Puhl — Full Stack Developer specialized in Node.js and AWS Serverless.',
+        'profile.alt': 'Photo of Dener Puhl',
+        'hero.tagline': 'Full Stack Developer • Node.js • AWS Serverless',
+        'hero.contact': 'Get in touch',
+        'hero.cv': 'Download CV',
+        'about.title': 'About me',
+        'about.text': 'Full Stack Developer with over 4 years of experience in the financial sector, specializing in <strong>Node.js</strong> and <strong>AWS Serverless</strong>. I build secure, high-performance, event-driven APIs. I have solid experience modernizing legacy systems — including complete rewrites and data migration — achieving performance gains above <strong>200%</strong> and cost reductions of up to <strong>60%</strong>.',
+        'about.yearsLabel': 'Years of experience',
+        'about.perfLabel': 'Performance gain',
+        'about.costLabel': 'Cost reduction',
+        'skills.title': 'Technical Skills',
+        'skills.backend': 'Backend',
+        'skills.frontend': 'Frontend',
+        'skills.cloud': 'Cloud & DevOps',
+        'skills.architecture': 'Architecture',
+        'skills.architecture.rest': 'REST APIs',
+        'skills.architecture.eventDriven': 'Event-Driven Architecture',
+        'skills.architecture.microservices': 'Microservices',
+        'skills.databases': 'Databases',
+        'skills.other': 'Observability & Others',
+        'experience.title': 'Professional Experience',
+        'experience.job1.period': 'Jan 2023 – Jan 2026',
+        'experience.job1.role': 'Full Stack Developer',
+        'experience.job1.b1': 'Architected and developed high-criticality financial systems focused on scalability and high availability.',
+        'experience.job1.b2': 'Led the modernization of legacy systems — complete rewrite and data migration — resulting in performance gains of up to 200%.',
+        'experience.job1.b3': 'Implemented structural improvements that increased the performance of critical systems by approximately 80%.',
+        'experience.job1.b4': 'Optimized cloud infrastructure (AWS), reducing operating costs by around 60%.',
+        'experience.job1.b5': 'Introduced development best practices (CI/CD, code standards), increasing team productivity.',
+        'experience.job1.b6': 'Worked with event-driven architecture using RabbitMQ and Redis for inter-service communication.',
+        'experience.job2.period': 'Jul 2021 – Dec 2022',
+        'experience.job2.role': 'Front-End Developer (Internship)',
+        'experience.job2.b1': 'Developed web interfaces focused on performance and user experience.',
+        'experience.job2.b2': 'Grew into full-stack responsibilities, including RESTful APIs and service integration via webhooks.',
+        'experience.job2.b3': 'Built complete front-end applications using React and TypeScript.',
+        'experience.job2.b4': 'Collaborated with design and backend teams to ensure visual consistency and functionality.',
+        'projects.title': 'Featured Projects',
+        'projects.trading.title': 'Automated Trading System',
+        'projects.trading.desc': 'Development of trading bots focused on high availability and real-time execution, using messaging and caching (RabbitMQ, Redis) with a resilient architecture for critical operations.',
+        'projects.trading.tag': 'High Availability',
+        'projects.legacy.title': 'Legacy System Modernization',
+        'projects.legacy.desc': 'Complete rewrite with event-driven architecture, data migration, and performance improvements above 200%, with a significant reduction in infrastructure costs.',
+        'projects.legacy.tag1': 'Event-Driven',
+        'projects.legacy.tag2': 'Migration',
+        'projects.legacy.tag3': 'Performance',
+        'projects.golive.title': 'Golive',
+        'projects.golive.desc': 'P2P screen sharing with friends over a private link. WebRTC carries video and audio directly between browsers — nothing passes through the server.',
+        'projects.golive.tag': 'Screen Sharing',
+        'projects.share.title': 'Share',
+        'projects.share.desc': 'Peer-to-peer file sharing: send files directly between browsers, with no upload to a central server.',
+        'projects.share.tag': 'File Transfer',
+        'projects.visit': 'Visit site',
+        'education.title': 'Education',
+        'education.degree1': 'Systems Analysis and Development',
+        'education.school1': 'Unimar – University of Marília',
+        'education.status1': 'In progress',
+        'education.degree2': 'Computer Technician',
+        'education.school2': 'Universitário Escola Técnica – Porto Alegre',
+        'education.status2': 'Completed',
+        'contact.title': 'Contact'
+      }
+    };
+
+    const SUPPORTED_LANGS = ['pt', 'en'];
+
+    const CV_URLS = {
+      pt: 'public/Dener_Puhl_Curriculo_PTBR.docx.pdf',
+      en: 'public/Dener_Puhl_English_CV.docx.pdf'
+    };
+
+
+    function detectLang() {
+      try {
+        const saved = localStorage.getItem('lang');
+        if (SUPPORTED_LANGS.includes(saved)) return saved;
+      } catch (e) { /* localStorage unavailable */ }
+
+      const languages = navigator.languages && navigator.languages.length
+        ? navigator.languages
+        : [navigator.language || ''];
+      const hasPortuguese = languages.some(function (lang) {
+        return /^pt/i.test(lang);
+      });
+      return hasPortuguese ? 'pt' : 'en';
+    }
+
+    function applyLang(lang) {
+      const dict = translations[lang] || translations.pt;
+
+      document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+      document.title = dict['meta.title'];
+
+      const description = document.querySelector('meta[name="description"]');
+      if (description) description.setAttribute('content', dict['meta.description']);
+
+      const cvLink = document.getElementById('cv-link');
+      if (cvLink) cvLink.setAttribute('href', CV_URLS[lang] || CV_URLS.pt);
+
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        const value = dict[el.dataset.i18n];
+        if (value !== undefined) el.textContent = value;
+      });
+
+      document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+        const value = dict[el.dataset.i18nHtml];
+        if (value !== undefined) el.innerHTML = value;
+      });
+
+      document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+        const value = dict[el.dataset.i18nAlt];
+        if (value !== undefined) el.setAttribute('alt', value);
+      });
+
+      document.querySelectorAll('.lang-switch button').forEach(function (button) {
+        const isActive = button.dataset.lang === lang;
+        button.classList.toggle('active', isActive);
+        button.setAttribute('aria-pressed', String(isActive));
+      });
+    }
+
+    function setLang(lang) {
+      if (!SUPPORTED_LANGS.includes(lang)) lang = 'pt';
+      try { localStorage.setItem('lang', lang); } catch (e) { /* ignore */ }
+      applyLang(lang);
+    }
+
+    document.querySelectorAll('.lang-switch button').forEach(function (button) {
+      button.addEventListener('click', function () {
+        setLang(button.dataset.lang);
+      });
+    });
+
+    applyLang(detectLang());
+  </script>
 
 </body>
 </html>
